@@ -41,7 +41,14 @@ def relationship_status(from_member, to_member, social_graph):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    if to_member in social_graph[from_member]["following"] and from_member in social_graph[to_member]["following"]:
+        return("friend")
+    elif from_member in social_graph[to_member]["following"]:
+        return("followed by")
+    elif to_member in social_graph[from_member]["following"]:
+        return("follower")
+    else:
+        return("no relationship")
 
 
 def tic_tac_toe(board):
@@ -70,7 +77,43 @@ def tic_tac_toe(board):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    a=np.array(board) 
+
+    grid= len(a)
+    winner="0jfasokfnaskjfas"
+    
+    for i in range(0, grid):
+        rows = a[i,:]
+        cols = a[:, i]
+        diag = a[i, i]
+        if  len(set(rows))==1:
+            winner=max(a[i,:])
+            break
+        else:
+            c = "do nothing"
+            
+        if  len(set(cols))==1:
+            winner=max(a[:, i])
+            break
+        else:
+            c = "do nothing"
+        
+
+        if len(set([board[i][i] for i in range(len(board))])) == 1:
+            winner=max([board[i][i] for i in range(len(board))])
+            break
+        else:
+            c = "do nothing"
+        if len(set([board[i][len(board)-i-1] for i in range(len(board))])) == 1:
+            winner=max([board[i][len(board)-i-1] for i in range(len(board))])
+            break
+        else:
+            c = "do nothing"
+            
+    if winner in a:
+        return(winner)
+    else:
+        return("NO WINNER")
 
 def eta(first_stop, second_stop, route_map):
     '''ETA.
@@ -103,4 +146,26 @@ def eta(first_stop, second_stop, route_map):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    leg1=list(route_map.keys())
+    length=len(leg1)
+
+    traveltime = 0
+   
+    y=1
+    while y>0:
+        for i in range (0, length):
+            if leg1[i][0] == first_stop and leg1[i][1]!=second_stop:
+                hey = leg1[i]
+                traveltime+= legs[hey]["travel_time_mins"]
+
+                first_stop = leg1[i][1]
+
+                break
+            if leg1[i][0] == first_stop and leg1[i][1]==second_stop:
+                hey = leg1[i]
+                traveltime+= legs[hey]["travel_time_mins"]
+                y=0
+                first_stop = "at destination"
+
+                break
+    return(traveltime)
