@@ -77,6 +77,7 @@ def tic_tac_toe(board):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
+    import numpy as np
     a=np.array(board) 
 
     grid= len(a)
