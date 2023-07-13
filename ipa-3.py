@@ -151,20 +151,20 @@ def eta(first_stop, second_stop, route_map):
     length=len(leg1)
 
     traveltime = 0
-   
+
     y=1
     while y>0:
         for i in range (0, length):
             if leg1[i][0] == first_stop and leg1[i][1]!=second_stop:
                 hey = leg1[i]
-                traveltime+= legs[hey]["travel_time_mins"]
+                traveltime+= route_map[hey]["travel_time_mins"]
 
                 first_stop = leg1[i][1]
 
                 break
             if leg1[i][0] == first_stop and leg1[i][1]==second_stop:
                 hey = leg1[i]
-                traveltime+= legs[hey]["travel_time_mins"]
+                traveltime+= route_map[hey]["travel_time_mins"]
                 y=0
                 first_stop = "at destination"
 
