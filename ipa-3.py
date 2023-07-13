@@ -89,33 +89,47 @@ def tic_tac_toe(board):
         diag = a[i, i]
         if  len(set(rows))==1:
             winner=max(a[i,:])
-            break
+            if winner != '':
+                break
+            else:
+                c = "do nothing"
         else:
             c = "do nothing"
             
         if  len(set(cols))==1:
             winner=max(a[:, i])
-            break
+            if winner != '':
+                break
+            else:
+                c = "do nothing"
         else:
             c = "do nothing"
         
 
         if len(set([board[i][i] for i in range(len(board))])) == 1:
             winner=max([board[i][i] for i in range(len(board))])
-            break
+            if winner != '':
+                break
+            else:
+                c = "do nothing"
         else:
             c = "do nothing"
         if len(set([board[i][len(board)-i-1] for i in range(len(board))])) == 1:
             winner=max([board[i][len(board)-i-1] for i in range(len(board))])
-            break
+            if winner != '':
+                break
+            else:
+                c = "do nothing"
         else:
             c = "do nothing"
             
-    if winner in a:
+    if winner == "":
+        return("NO WINNER")
+    elif winner in a:
         return(winner)
     else:
         return("NO WINNER")
-
+        
 def eta(first_stop, second_stop, route_map):
     '''ETA.
     25 points.
